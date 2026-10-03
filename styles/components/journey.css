@@ -1,0 +1,159 @@
+/* ==========================================================================
+   COMPONENTE: JOURNEY (FLUXO DAS 10 DESCOBERTAS & CARTA FINAL REUNIDA)
+   Transições poéticas, revelação de fragmentos e scrapbook final
+   ========================================================================== */
+
+/* Cartão do Modal de Fragmento */
+.fragment-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--color-paper-light);
+  background-image: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(250, 246, 239, 0.7) 100%);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-paper);
+  box-shadow: 0 20px 50px rgba(45, 25, 20, 0.25);
+  padding: clamp(28px, 6vw, 42px);
+  text-align: center;
+  transform: scale(0.9) translateY(16px);
+  transition: transform 400ms var(--ease-dramatic), opacity 400ms ease;
+  overflow: hidden;
+}
+
+.discovery-overlay.is-visible .fragment-modal-card {
+  transform: scale(1) translateY(0);
+}
+
+.fragment-badge-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(247, 222, 218, 0.45);
+  border: 1px solid rgba(201, 138, 128, 0.35);
+  border-radius: var(--radius-round);
+  padding: 4px 14px;
+  margin-bottom: 18px;
+}
+
+.fragment-badge-icon {
+  font-size: 1rem;
+}
+
+.fragment-badge-text {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-burgundy-soft);
+  font-weight: 500;
+}
+
+.fragment-text-content {
+  font-size: clamp(1.2rem, 3.5vw, 1.45rem);
+  font-family: var(--font-serif-display);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--color-ink-primary);
+  margin: 16px 0 28px;
+  padding: 0 6px;
+}
+
+.fragment-action-btn {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-paper-light);
+  background: radial-gradient(circle at 35% 35%, #a83845 0%, #7d242e 70%, #54141c 100%);
+  border: none;
+  border-radius: var(--radius-round);
+  padding: 12px 28px;
+  box-shadow: 0 4px 12px rgba(133, 61, 73, 0.35);
+  cursor: pointer;
+  transition: transform var(--transition-short), box-shadow var(--transition-short);
+}
+
+.fragment-action-btn:hover {
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 6px 16px rgba(133, 61, 73, 0.45);
+}
+
+.fragment-action-btn:active {
+  transform: scale(0.97);
+}
+
+/* ==========================================================================
+   SEÇÃO FINAL: CARTA COMPLETA REUNIDA (SCRAPBOOK DE TODAS AS MENSAGENS)
+   ========================================================================== */
+.assembled-letter-section {
+  display: none;
+  width: 100%;
+  max-width: 620px;
+  margin: 40px auto 0;
+  background-color: var(--color-paper-light);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-paper);
+  box-shadow: var(--shadow-paper-floating);
+  padding: clamp(28px, 6vw, 56px);
+  animation: fadeInSlow 1000ms var(--ease-gentle) forwards;
+}
+
+.assembled-letter-section.is-visible {
+  display: block;
+}
+
+@keyframes fadeInSlow {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.assembled-letter-header {
+  text-align: center;
+  margin-bottom: 32px;
+  border-bottom: 1px solid rgba(205, 168, 105, 0.3);
+  padding-bottom: 20px;
+}
+
+.assembled-fragment-item {
+  position: relative;
+  margin-bottom: 26px;
+  padding-left: 20px;
+  border-left: 2px solid var(--color-rose-muted);
+}
+
+.assembled-fragment-step {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-rose-vintage);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.assembled-fragment-text {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--color-ink-primary);
+}
+
+.assembled-special-box {
+  background: rgba(247, 222, 218, 0.3);
+  border: 1px solid var(--color-rose-vintage);
+  border-radius: var(--radius-paper);
+  padding: 24px;
+  margin: 32px 0;
+  text-align: center;
+}
+
+.assembled-final-whisper {
+  text-align: center;
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  color: var(--color-burgundy-soft);
+  margin: 28px 0 16px;
+  line-height: 1.3;
+}

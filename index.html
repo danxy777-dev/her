@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Uma experiência digital artesanal em mensagens de amor divididas em pequenos pedaços para [NOME DELA].">
+  <meta name="theme-color" content="#fcf9f4">
+  <title>Para [NOME DELA] • Uma Carta em 10 Pedaços</title>
+
+  <!-- Google Fonts: Cormorant Garamond, Alex Brush, Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Estilos da Arquitetura -->
+  <link rel="stylesheet" href="./styles/tokens.css">
+  <link rel="stylesheet" href="./styles/base.css">
+  <link rel="stylesheet" href="./styles/components/stage.css">
+  <link rel="stylesheet" href="./styles/components/paper-flower.css">
+  <link rel="stylesheet" href="./styles/components/envelope.css">
+  <link rel="stylesheet" href="./styles/components/letter.css">
+  <link rel="stylesheet" href="./styles/components/note.css">
+  <link rel="stylesheet" href="./styles/components/heart.css">
+  <link rel="stylesheet" href="./styles/components/progress.css">
+  <link rel="stylesheet" href="./styles/components/journey.css">
+</head>
+<body>
+
+  <!-- Camada Atmosférica de Fundo (Pétalas e Luz Suave) -->
+  <div id="ambient-backdrop" aria-hidden="true"></div>
+
+  <!-- Fundo escurecido suave para leitura da carta expandida -->
+  <div class="letter-backdrop" id="letter-backdrop" aria-hidden="true"></div>
+
+  <!-- MODAL DE DESCOBERTA POÉTICA (EXIBE CADA UM DOS 10 PEDAÇOS) -->
+  <aside class="discovery-overlay" id="discovery-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="fragment-modal-card">
+      <div class="washi-tape" aria-hidden="true"></div>
+      
+      <div class="fragment-badge-container">
+        <span class="fragment-badge-icon" id="fragment-badge-icon">🌷</span>
+        <span class="fragment-badge-text" id="fragment-badge-text">1ª Descoberta • Curiosidade</span>
+      </div>
+
+      <h3 id="fragment-title" style="font-size: 1.15rem; font-weight: 400; color: var(--color-ink-faint); margin-bottom: 8px;"></h3>
+
+      <p class="fragment-text-content" id="fragment-text">
+        “Eu poderia simplesmente ter escrito tudo de uma vez… mas achei mais bonito deixar você descobrir aos poucos.”
+      </p>
+
+      <button type="button" class="fragment-action-btn" id="discovery-close-btn">
+        Guardar este pedaço & Continuar
+      </button>
+
+      <div class="folded-corner" aria-hidden="true"></div>
+    </div>
+  </aside>
+
+  <!-- Container Principal -->
+  <main id="app">
+    <section class="experience-stage" id="experience-stage">
+      
+      <!-- Rastreador Poético de Progresso (10 Pétalas) -->
+      <div class="discovery-tracker" id="discovery-tracker">
+        <span class="tracker-title">Lembranças descobertas: <strong id="tracker-count">1 de 10</strong></span>
+        <div class="tracker-petals" id="tracker-petals"></div>
+      </div>
+
+      <!-- Cabeçalho Suave de Apresentação -->
+      <header class="intro-header" style="text-align: center; margin-bottom: 24px;">
+        <span class="intro-date">Uma carta dividida em 10 pedaços de amor</span>
+        <h1 class="intro-title" style="margin-bottom: 2px;">Para</h1>
+        <span class="intro-recipient">[NOME DELA]</span>
+      </header>
+
+      <!-- ENVELOPE ARTESANAL 3D COM FLORES E CARTA INTERNA -->
+      <div class="envelope-wrapper">
+        
+        <!-- Flores de Papel Decorativas nos Cantos (Interativas) -->
+        <div class="paper-flower-cluster flower-corner-top-left" id="flower-cluster-tl" title="Toque na flor para ler um pedaço guardado"></div>
+        <div class="paper-flower-cluster flower-corner-bottom-right" id="flower-cluster-br" title="Toque na flor para ler um pedaço guardado"></div>
+
+        <div class="envelope" id="main-envelope">
+          
+          <!-- Aba Superior que abre em 3D ao quebrar o selo -->
+          <div class="envelope-flap" aria-hidden="true"></div>
+
+          <!-- Carta Interior Guardada dentro do Envelope -->
+          <article class="letter-container" id="main-letter">
+            <button type="button" class="letter-close-btn" id="close-letter-btn" aria-label="Recolher carta">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
+            <div class="letter-inner-border">
+              <header class="letter-header">
+                <span class="letter-salutation">Querida [NOME DELA],</span>
+                <span class="letter-date">Uma carta feita aos poucos para você</span>
+              </header>
+
+              <div class="letter-body">
+                
+                <!-- PASSO 1: Curiosidade (Revelado com o Envelope) -->
+                <div class="placeholder-declaration" style="cursor: pointer;" data-step="1" title="Toque para reler">
+                  <span class="caption-text" style="color: var(--color-rose-vintage); display: block; margin-bottom: 4px;">🌷 1ª Descoberta • Curiosidade</span>
+                  <strong>“Eu poderia simplesmente ter escrito tudo de uma vez… mas achei mais bonito deixar você descobrir aos poucos.”</strong>
+                </div>
+
+                <!-- BLOCO INTERATIVO: Bilhete e Coração -->
+                <div style="display: flex; gap: 14px; align-items: stretch; justify-content: space-between; margin: 24px 0; flex-wrap: wrap;">
+                  
+                  <!-- PASSO 3: Admiração (Bilhete Dobrado com Washi Tape) -->
+                  <div class="secret-note-tag" data-step="3" role="button" tabindex="0" title="Toque para desdobrar este bilhete" style="flex: 1; min-width: 200px; margin: 0;">
+                    <svg class="note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" y1="13" x2="8" y2="13"></line>
+                      <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                    <span class="note-hint">🌸 3ª Descoberta • Admiração<br><small style="color: var(--color-ink-faint);">Toque no bilhete para desdobrar</small></span>
+                  </div>
+
+                  <!-- PASSO 4: Presença (Coração de Papel Origami) -->
+                  <div id="clue-step-4" style="display: flex; align-items: center; gap: 8px; background: rgba(253, 246, 235, 0.6); padding: 8px 14px; border-radius: var(--radius-paper); border: 1px dashed var(--color-rose-muted);" data-step="4" role="button" tabindex="0">
+                    <button type="button" class="paper-heart" title="Toque no coração de papel" aria-label="Coração de papel"></button>
+                    <span class="caption-text" style="font-size: 0.7rem; color: var(--color-burgundy-soft);">♡ 4ª Descoberta<br>Presença</span>
+                  </div>
+
+                </div>
+
+                <!-- PASSO 6: Mais Pessoal (Cartão de Linho) -->
+                <div id="clue-step-6" class="placeholder-declaration" style="border-left-color: var(--color-burgundy-soft); background: rgba(252, 245, 235, 0.7); cursor: pointer;" data-step="6" title="Toque para ler">
+                  <span class="caption-text" style="color: var(--color-burgundy-soft); display: block; margin-bottom: 4px;">🌹 6ª Descoberta • Mais Pessoal</span>
+                  <em>[AQUI ENTRA O DETALHE ESPECÍFICO SOBRE ELA: aquele jeito único dela, uma lembrança marcante ou algo que só você nota]</em>
+                </div>
+
+                <!-- PASSO 7 & 8: Vulnerabilidade e Preparação -->
+                <div id="clue-step-8" style="display: flex; gap: 12px; margin: 20px 0; flex-wrap: wrap;">
+                  <button type="button" data-step="7" class="discovery-close-btn" style="flex: 1; min-width: 160px; font-size: 0.75rem; text-align: center;">
+                    💗 7ª Descoberta • Sinceridade
+                  </button>
+                  <button type="button" data-step="8" class="discovery-close-btn" style="flex: 1; min-width: 160px; font-size: 0.75rem; text-align: center; border-color: var(--color-gold-soft); background: rgba(253, 246, 235, 0.5);">
+                    💌 8ª Descoberta • Preparação
+                  </button>
+                </div>
+
+                <!-- PASSO 9: A Declaração Principal -->
+                <div id="clue-step-9" class="placeholder-declaration" style="border-left: 3px solid var(--color-gold-soft); background: rgba(255, 253, 248, 0.95); box-shadow: 0 4px 14px rgba(69, 45, 36, 0.06); cursor: pointer; padding: 20px;" data-step="9" title="Toque para abrir a declaração principal">
+                  <span class="caption-text" style="color: var(--color-gold-rich); display: block; margin-bottom: 6px; font-weight: 500;">❤️ 9ª Descoberta • Declaração Principal</span>
+                  <p style="font-size: 1.15rem; font-style: italic; color: var(--color-burgundy-dark); margin: 0;">
+                    [DECLARAÇÃO PRINCIPAL: Aqui entrará o seu texto mais importante, escrito especialmente para ela]
+                  </p>
+                </div>
+
+                <!-- PASSO 10: O Fechamento -->
+                <div data-step="10" style="margin-top: 28px; text-align: center; cursor: pointer; padding: 14px 10px; border-radius: var(--radius-paper); transition: background var(--transition-short);" title="Toque para ler o fechamento">
+                  <span class="caption-text" style="color: var(--color-rose-deep); display: block; margin-bottom: 4px;">🌷 10ª Descoberta • O Fechamento</span>
+                  <p style="font-family: var(--font-script); font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--color-burgundy-soft); line-height: 1.2; margin: 4px 0;">
+                    “No fim, era só isso que eu queria que você soubesse: você é especial para mim.”
+                  </p>
+                </div>
+
+              </div>
+
+              <!-- Assinatura Romântica -->
+              <footer class="letter-signature">
+                <span class="letter-sign-farewell">Com todo o meu amor,</span>
+                <span class="letter-sign-name">[MEU NOME]</span>
+              </footer>
+
+              <!-- Convite para Ver a Carta Inteira Reunida -->
+              <div id="completion-invitation" style="display: none; margin-top: 32px; text-align: center; border-top: 1px dashed rgba(205, 168, 105, 0.4); padding-top: 24px;">
+                <button type="button" id="view-full-letter-btn" class="fragment-action-btn" style="font-size: 0.76rem;">
+                  📜 Ler Todos os 10 Pedaços Reunidos
+                </button>
+              </div>
+
+            </div>
+          </article>
+
+          <!-- Dobras Frontais do Envelope (Bolso onde a carta se encaixa) -->
+          <div class="envelope-pocket" aria-hidden="true"></div>
+          <div class="envelope-bottom-fold" aria-hidden="true"></div>
+
+          <!-- Selo de Cera Central (Botão de Interação) -->
+          <div class="envelope-seal-wrapper">
+            <button type="button" class="wax-seal-button" id="start-experience-btn" aria-label="Tocar no selo de cera para abrir a carta">
+              <svg class="wax-seal-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Dica de Ação Abaixo do Envelope -->
+      <div class="seal-action-container" style="margin-top: 32px;">
+        <span class="action-hint">Toque no selo para abrir a primeira parte</span>
+      </div>
+
+      <!-- SEÇÃO DA CARTA COMPLETA REUNIDA (SCRAPBOOK FINAL) -->
+      <section class="assembled-letter-section" id="assembled-letter-section">
+        <header class="assembled-letter-header">
+          <span class="caption-text" style="color: var(--color-gold-rich);">A Carta Reunida</span>
+          <h2 style="font-size: 2.2rem; font-weight: 300; margin-top: 6px;">Tudo o que guardei para você</h2>
+          <span class="script-text" style="font-size: 1.8rem;">Para [NOME DELA]</span>
+        </header>
+
+        <!-- Lista dinâmica dos 10 fragmentos -->
+        <div id="assembled-fragments-list"></div>
+
+        <footer style="margin-top: 40px; text-align: center; border-top: 1px solid rgba(205, 168, 105, 0.3); padding-top: 24px;">
+          <p class="assembled-final-whisper">
+            “No fim, era só isso que eu queria que você soubesse: você é especial para mim.”
+          </p>
+          <span class="letter-sign-farewell">Com todo o meu carinho,</span>
+          <span class="letter-sign-name">[MEU NOME]</span>
+        </footer>
+      </section>
+
+    </section>
+  </main>
+
+  <!-- Script da Aplicação (Funciona em http:// e direto em file://) -->
+  <script defer src="./js/app.js"></script>
+</body>
+</html>

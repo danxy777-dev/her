@@ -1,0 +1,180 @@
+/* ==========================================================================
+   COMPONENTE: STAGE (PALCO PRINCIPAL DA EXPERIÊNCIA)
+   Área central de apresentação tátil com efeito de papel artesanal
+   ========================================================================== */
+
+.experience-stage {
+  position: relative;
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--transition-medium), transform var(--transition-medium);
+}
+
+/* Cartão Base Inicial / Mesa de Trabalho Romântica */
+.paper-card {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  background-color: var(--color-paper-light);
+  background-image: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(250, 245, 238, 0.4) 100%);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-paper);
+  box-shadow: var(--shadow-paper-floating);
+  padding: clamp(28px, 6vw, 56px);
+  text-align: center;
+  overflow: hidden;
+  transition: transform var(--transition-long), box-shadow var(--transition-long);
+}
+
+/* Borda interna refinada estilo papel de carta vintage */
+.paper-card::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(205, 168, 105, 0.22);
+  border-radius: calc(var(--radius-paper) - 2px);
+  pointer-events: none;
+}
+
+/* Dobra sutil de papel na ponta superior direita */
+.paper-card-crease {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, transparent 50%, rgba(145, 120, 95, 0.08) 50%, rgba(255, 255, 255, 0.8) 100%);
+  border-bottom-left-radius: 4px;
+  box-shadow: -2px 2px 4px rgba(69, 45, 36, 0.04);
+}
+
+/* Conteúdo do Cartão Inicial */
+.intro-header {
+  margin-bottom: 24px;
+}
+
+.intro-date {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.intro-title {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 300;
+  line-height: 1.25;
+  color: var(--color-ink-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.intro-recipient {
+  display: inline-block;
+  font-family: var(--font-script);
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  color: var(--color-burgundy-soft);
+  line-height: 1;
+  margin-top: 4px;
+  transform: rotate(-1.5deg);
+  transition: transform var(--transition-short);
+}
+
+.intro-divider {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-soft), transparent);
+  margin: 24px auto;
+  opacity: 0.75;
+}
+
+.intro-subtext {
+  font-size: 1.05rem;
+  color: var(--color-ink-secondary);
+  font-style: italic;
+  max-width: 420px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+}
+
+/* Botão / Selo de Abertura */
+.seal-action-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.wax-seal-button {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #a83845 0%, #7d242e 70%, #54141c 100%);
+  box-shadow: var(--shadow-wax-seal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f7e6e8;
+  transition: transform var(--transition-short), box-shadow var(--transition-short);
+  cursor: pointer;
+}
+
+.wax-seal-button::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+.wax-seal-button:hover {
+  transform: scale(1.06) rotate(3deg);
+  box-shadow: 0 8px 18px rgba(69, 20, 28, 0.45);
+}
+
+.wax-seal-button:active {
+  transform: scale(0.96);
+}
+
+.wax-seal-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.9;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+}
+
+.action-hint {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+  transition: color var(--transition-short);
+}
+
+.wax-seal-button:hover + .action-hint {
+  color: var(--color-burgundy-soft);
+}
+
+/* Suporte a Mobile Touch */
+@media (max-width: 640px) {
+  .paper-card {
+    padding: 32px 20px;
+    box-shadow: var(--shadow-paper-medium);
+  }
+
+  .intro-subtext {
+    font-size: 0.98rem;
+  }
+}

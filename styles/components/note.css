@@ -1,0 +1,130 @@
+/* ==========================================================================
+   COMPONENTE: NOTE (BILHETES DE PAPEL & RECORTES ARTESANAIS)
+   Pequenos pedaços de papel dobrados com textura de linho e fita adesiva washi tape
+   ========================================================================== */
+
+/* Recorte de Bilhete Dobrado */
+.folded-note {
+  position: relative;
+  background: #fdfbf7;
+  border: 1px solid rgba(198, 178, 158, 0.4);
+  border-radius: var(--radius-subtle);
+  box-shadow: var(--shadow-paper-subtle);
+  padding: 18px 22px;
+  cursor: pointer;
+  transition: transform var(--transition-short), box-shadow var(--transition-short);
+  transform-origin: top left;
+}
+
+.folded-note:hover {
+  transform: translateY(-3px) rotate(1deg);
+  box-shadow: var(--shadow-paper-medium);
+}
+
+/* Fita Washi Tape fixando o bilhete */
+.washi-tape {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 54px;
+  height: 18px;
+  background: rgba(228, 183, 175, 0.65);
+  border-left: 2px dashed rgba(255, 255, 255, 0.6);
+  border-right: 2px dashed rgba(255, 255, 255, 0.6);
+  box-shadow: 0 1px 3px rgba(69, 45, 36, 0.08);
+  pointer-events: none;
+}
+
+/* Dobra diagonal de papel no canto do bilhete */
+.folded-corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 16px 16px;
+  border-color: transparent transparent #ece3d5 transparent;
+  filter: drop-shadow(-1px -1px 2px rgba(69, 45, 36, 0.08));
+}
+
+/* Modal ou Cartão de Descoberta Revelada */
+.discovery-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(45, 30, 25, 0.4);
+  backdrop-filter: blur(3px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-medium);
+}
+
+.discovery-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.discovery-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: #fffdfa;
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-paper);
+  box-shadow: var(--shadow-paper-floating);
+  padding: clamp(24px, 5vw, 36px);
+  text-align: center;
+  transform: scale(0.92) translateY(12px);
+  transition: transform var(--transition-medium);
+}
+
+.discovery-overlay.is-visible .discovery-card {
+  transform: scale(1) translateY(0);
+}
+
+.discovery-card-header {
+  margin-bottom: 16px;
+}
+
+.discovery-card-category {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-rose-vintage);
+  display: block;
+}
+
+.discovery-card-text {
+  font-size: clamp(1.1rem, 3vw, 1.25rem);
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--color-ink-primary);
+  margin: 18px 0;
+}
+
+.discovery-close-btn {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-burgundy-soft);
+  border: 1px solid rgba(133, 61, 73, 0.25);
+  border-radius: var(--radius-round);
+  padding: 8px 20px;
+  background: #fdfbf7;
+  cursor: pointer;
+  transition: all var(--transition-short);
+  margin-top: 12px;
+}
+
+.discovery-close-btn:hover {
+  background: var(--color-blush);
+  border-color: var(--color-burgundy-soft);
+}

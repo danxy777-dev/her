@@ -1,0 +1,38 @@
+/* ==========================================================================
+   COMPONENTE: HEART (CORAÇÃO DE PAPEL ARTESANAL)
+   Elemento tátil delicado para pequenas confissões e frases carinhosas
+   ========================================================================== */
+
+.paper-heart {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: radial-gradient(circle at 35% 35%, #ebc2bc 0%, #d89e95 70%, #c98a80 100%);
+  clip-path: path("M22 38.5 C22 38.5, 4 25, 4 14 C 4 7, 10 3, 16 3 C 19.5 3, 21.5 5.5, 22 7 C 22.5 5.5, 24.5 3, 28 3 C 34 3, 40 7, 40 14 C 40 25, 22 38.5, 22 38.5 Z");
+  box-shadow: 0 4px 10px rgba(168, 88, 82, 0.25);
+  cursor: pointer;
+  transition: transform var(--transition-short), filter var(--transition-short);
+}
+
+/* Dobra central do coração de papel (efeito de origami) */
+.paper-heart::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  bottom: 6px;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(69, 20, 28, 0.25) 0%, rgba(69, 20, 28, 0.05) 100%);
+}
+
+.paper-heart:hover {
+  transform: scale(1.12) rotate(-4deg);
+  filter: drop-shadow(0 6px 12px rgba(168, 88, 82, 0.35));
+}
+
+.paper-heart:active {
+  transform: scale(0.95);
+}

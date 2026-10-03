@@ -1,0 +1,246 @@
+/* ==========================================================================
+   COMPONENTE: LETTER (CARTA INTERIOR DESDOBRÁVEL)
+   Carta romântica artesanal em papel pergaminho com revelação suave
+   ========================================================================== */
+
+.letter-container {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  width: 92%;
+  max-width: 500px;
+  background-color: var(--color-paper-light);
+  background-image: 
+    linear-gradient(180deg, #fffefa 0%, #faf5ec 100%);
+  border: 1px solid var(--color-paper-border);
+  border-radius: var(--radius-paper);
+  box-shadow: var(--shadow-paper-floating);
+  padding: clamp(24px, 5vw, 44px);
+  z-index: 3;
+  transition: transform 900ms cubic-bezier(0.2, 0.9, 0.3, 1), 
+              opacity 600ms ease,
+              box-shadow var(--transition-long);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Quando o envelope abre, a carta é ejetada e expande */
+.envelope.is-open .letter-container {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(-70px);
+  z-index: 10;
+  box-shadow: 0 24px 60px rgba(69, 45, 36, 0.16);
+}
+
+/* Modo tela cheia da carta para leitura confortável */
+.letter-container.is-expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  width: min(92vw, 560px);
+  max-height: 88vh;
+  overflow-y: auto;
+  z-index: 999;
+  box-shadow: 0 32px 80px rgba(45, 25, 20, 0.3);
+  animation: letterPopIn 600ms var(--ease-dramatic);
+}
+
+@keyframes letterPopIn {
+  0% {
+    transform: translate(-50%, -42%) scale(0.92);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Backdrop escurecido sutil para foco na carta expandida */
+.letter-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(45, 30, 25, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 990;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-medium);
+}
+
+.letter-backdrop.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Borda interna refinada da carta */
+.letter-inner-border {
+  position: relative;
+  border: 1px solid rgba(205, 168, 105, 0.3);
+  padding: clamp(20px, 4vw, 36px);
+  border-radius: 4px;
+}
+
+/* Cabeçalho da Carta */
+.letter-header {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.letter-salutation {
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  color: var(--color-burgundy-soft);
+  line-height: 1.2;
+  display: block;
+}
+
+.letter-date {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--color-ink-faint);
+  text-transform: uppercase;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Corpo da Carta */
+.letter-body {
+  font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+  line-height: 1.8;
+  color: var(--color-ink-primary);
+  text-align: left;
+}
+
+.letter-body p {
+  margin-bottom: 18px;
+  text-indent: 1.5em;
+}
+
+/* Placeholder estilizado de declaração */
+.placeholder-declaration {
+  display: block;
+  background: rgba(247, 222, 218, 0.35);
+  border-left: 2px solid var(--color-rose-vintage);
+  padding: 14px 18px;
+  margin: 20px 0;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+  color: var(--color-burgundy-soft);
+}
+
+/* Pequeno Bilhete Dobrado Interativo (Descoberta 1) */
+.secret-note-tag {
+  background: #fcf6eb;
+  border: 1px dashed var(--color-gold-soft);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 24px 0;
+  cursor: pointer;
+  transition: transform var(--transition-short), background var(--transition-short);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.secret-note-tag:hover {
+  transform: translateY(-2px);
+  background: #fff9f0;
+}
+
+.secret-note-tag .note-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-gold-rich);
+  flex-shrink: 0;
+}
+
+.secret-note-tag .note-hint {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-secondary);
+}
+
+.secret-note-revealed {
+  display: none;
+  background: #fffdf8;
+  border: 1px solid rgba(205, 168, 105, 0.4);
+  padding: 16px;
+  border-radius: 6px;
+  margin-top: 10px;
+  box-shadow: var(--shadow-paper-subtle);
+  animation: fadeInDown 400ms var(--ease-gentle);
+}
+
+.secret-note-revealed.is-open {
+  display: block;
+}
+
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Assinatura da Carta */
+.letter-signature {
+  margin-top: 32px;
+  text-align: right;
+}
+
+.letter-sign-farewell {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--color-ink-secondary);
+  display: block;
+}
+
+.letter-sign-name {
+  font-family: var(--font-script);
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  color: var(--color-burgundy-soft);
+  line-height: 1.1;
+  display: inline-block;
+  transform: rotate(-1deg);
+  margin-top: 4px;
+}
+
+/* Botão Fechar / Recolher Carta */
+.letter-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(140, 43, 54, 0.08);
+  color: var(--color-burgundy-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition-short), transform var(--transition-short);
+}
+
+.letter-close-btn:hover {
+  background: rgba(140, 43, 54, 0.16);
+  transform: scale(1.1);
+}
+
+/* Responsividade Mobile para a Carta */
+@media (max-width: 640px) {
+  .envelope.is-open .letter-container {
+    transform: translateX(-50%) translateY(-40px);
+  }
+  .letter-container.is-expanded {
+    width: 95vw;
+    padding: 20px 14px;
+  }
+  .letter-inner-border {
+    padding: 16px 12px;
+  }
+}
